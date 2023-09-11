@@ -10,4 +10,7 @@ public interface IAcervoReporitory {
     Livro getLivroTitulo(String titulo);
     boolean cadastraLivroNovo(Livro livro);
     boolean removeLivro(int codigo);
+    int num_obras_autor(String autor);
+    int mais_recente_que(int ano);
+    int media_livros_autor();
 }
