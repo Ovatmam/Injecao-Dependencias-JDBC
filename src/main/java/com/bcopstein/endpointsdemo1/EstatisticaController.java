@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class EstatisticaController {
     private ServicoEstatistica servicoEstatistica;
 
+    @Autowired
     public EstatisticaController(ServicoEstatistica servicoEstatistica){
         System.out.println("\n\nCriado Estatistica Controller\n\n");
         this.servicoEstatistica = servicoEstatistica;
@@ -31,6 +32,11 @@ public class EstatisticaController {
         return "Bem vindo as Estatisticas!";
     }
 
+    @GetMapping("/livros")
+    @CrossOrigin(origins = "*")
+    public List<Livro> getLivros() {
+        return acervo.getAll();
+    }
 
 
 }
