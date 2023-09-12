@@ -36,7 +36,7 @@ public class EstatController {
     
     @GetMapping("/media-de-obras")
     @CrossOrigin("*")
-    public double mediaObrasAutor(@RequestParam(value = "autor") String autor) {
-        return estat.mediaObrasAutor(autor);
+    public double mediaObrasAutor() {
+        return estat.mediaObrasAutor();
     }
 }

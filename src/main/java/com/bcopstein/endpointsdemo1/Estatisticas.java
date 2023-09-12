@@ -21,7 +21,7 @@ public class Estatisticas implements IEstatisticas{
         return qtd;
     }
 
-    public double mediaObrasAutor(String autor){
+    public double mediaObrasAutor(){
         return (double)acervo.getTitulos().size() / (double)acervo.getAutores().size();
     }
 }
