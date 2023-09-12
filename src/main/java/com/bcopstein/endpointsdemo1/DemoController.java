@@ -3,6 +3,7 @@ package com.bcopstein.endpointsdemo1;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,15 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/biblioteca")
 public class DemoController{
-    private List<Livro> livros;
+    private Acervo acervo;
 
-    public DemoController(){
-        livros = new LinkedList<>();
-
-        livros.add(new Livro(10,"Introdução ao Java","Huguinho Pato",2022));
-        livros.add(new Livro(20,"Introdução ao Spring-Boot","Zezinho Pato",2020));
-        livros.add(new Livro(15,"Principios SOLID","Luizinho Pato",2023));
-        livros.add(new Livro(17,"Padroes de Projeto","Lala Pato",2019));
+    @Autowired
+    public DemoController(Acervo acervo){
+        this.acervo = acervo;
     }
 
     @GetMapping("/")
@@ -37,24 +34,20 @@ public class DemoController{
     @GetMapping("/livros")
     @CrossOrigin(origins = "*")
     public List<Livro> getLivros() {
-        return livros;
+        return acervo.getAll();
     }
 
     // Solucao da dinâmica
     @GetMapping("/titulos")
     @CrossOrigin(origins = "*")
     public List<String> getTitulos() {
-        return livros.stream()
-               .map(livro->livro.titulo())
-               .toList();
+        return acervo.getTitulos();
     }
 
     @GetMapping("/autores")
     @CrossOrigin(origins = "*")
     public List<String> getAutores() {
-        return livros.stream()
-               .map(livro->livro.autor())
-               .toList();
+        return acervo.getAutores();
     }
 
     // Recebendo uma Qwery String
@@ -62,9 +55,7 @@ public class DemoController{
     @GetMapping("/livrosautor")
     @CrossOrigin(origins = "*")
     public List<Livro> getLivrosDoAutor(@RequestParam(value = "autor") String autor) {
-        return livros.stream()
-               .filter(livro->livro.autor().equals(autor))
-               .toList();
+        return acervo.getLivrosDoAutor(autor);
     }
 
     /* 
@@ -84,14 +75,10 @@ public class DemoController{
     // Retorna o livro que tem determinado título
     @GetMapping("/livrotitulo/{titulo}")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<Livro> getLivroTitulo(@PathVariable("titulo") String titulo) {
-        Livro resp = livros.stream()
-               .filter(livro->livro.titulo().equals(titulo))
-               .findFirst()
-               .orElse(null);   
+    public ResponseEntity<Livro> getLivroTitulo(@PathVariable("titulo") String titulo) { 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(resp);
+                .body(acervo.getLivroTitulo(titulo));
     }
 
 
@@ -100,7 +87,6 @@ public class DemoController{
     @PostMapping("/novolivro")
     @CrossOrigin(origins = "*")
     public boolean cadastraLivroNovo(@RequestBody final Livro livro) {
-        livros.add(livro);
-        return true;
+        return acervo.cadastraLivroNovo(livro);
     }
 }
