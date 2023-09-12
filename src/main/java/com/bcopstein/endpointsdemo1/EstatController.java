@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/estatisticas")
 public class EstatController {
-    private IEstatisticas estat;
+    private Estatisticas estat;
 
     @Autowired
-    public EstatController(Acervo acervo){
-        this.estat = new Estatisticas(acervo);
+    public EstatController(Estatisticas estat){
+        this.estat = estat;
     }
 
     @GetMapping("/")

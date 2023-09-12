@@ -1,15 +1,17 @@
 package com.bcopstein.endpointsdemo1;
 
-public class Estatisticas implements IEstatisticas{
-    private Acervo acervo;
+import org.springframework.stereotype.Component;
 
-    public Estatisticas(Acervo acervo){
+@Component
+public class Estatisticas {
+    private IAcervoRepository acervo;
+
+    public Estatisticas(IAcervoRepository acervo){
         this.acervo = acervo;
     }
 
     public int qtdObrasAutor(String autor){
         return acervo.getLivrosDoAutor(autor).size();
-
     }
 
     public int obrasDepoisDe(int ano){

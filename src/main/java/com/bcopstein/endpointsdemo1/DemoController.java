@@ -1,6 +1,5 @@
 package com.bcopstein.endpointsdemo1;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/biblioteca")
 public class DemoController{
-    private Acervo acervo;
+    private IAcervoRepository acervo;
 
     @Autowired
-    public DemoController(Acervo acervo){
+    public DemoController(IAcervoRepository acervo){
         this.acervo = acervo;
     }
 
