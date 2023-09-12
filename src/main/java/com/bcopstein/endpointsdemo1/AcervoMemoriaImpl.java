@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-@Primary
+
 public class AcervoMemoriaImpl implements IAcervoRepository {
     ArrayList<Livro> lista_livros = new ArrayList<Livro>();
 
