@@ -3,6 +3,9 @@ package com.bcopstein.endpointsdemo1;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class AcervoMemoriaImpl implements IAcervoRepository {
     private List<Livro> livros;
 
