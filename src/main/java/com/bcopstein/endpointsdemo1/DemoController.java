@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/biblioteca")
 public class DemoController{
-    private AcervoMemoriaImpl acervo;
+    private IAcervoRepository acervo;
     
     @Autowired
-    public DemoController(AcervoMemoriaImpl acervo){
+    public DemoController(IAcervoRepository acervo){
         System.out.println("\n\nCriado DemoController\n\n");
         this.acervo = acervo;
     }
@@ -84,24 +84,6 @@ public class DemoController{
         return acervo.removeLivro(codigo);
     }
 
-    //-------------RESPOSTAS PARA EXERCICIO DE REPOSITORIO (ACERVO) -------------------
-
-    @GetMapping("/num_livros/{autor}")
-    @CrossOrigin(origins = "*")
-    public int num_livros_autor(@PathVariable("autor") String autor){
-        return acervo.num_obras_autor(autor);
-    }
-
-
-    @GetMapping("/mais_recente_que")
-    @CrossOrigin(origins = "*")
-    public int mais_recente_que(@RequestParam(value = "ano") int ano){
-        return acervo.mais_recente_que(ano);
-    }
-
-    @GetMapping("/media_obras_autor")
-    @CrossOrigin(origins = "*")
-    public int media_obras_autor(){
-        return acervo.media_livros_autor();
-    }
+   
+   
 }

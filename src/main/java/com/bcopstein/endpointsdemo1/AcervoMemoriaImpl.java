@@ -3,12 +3,14 @@ package com.bcopstein.endpointsdemo1;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AcervoMemoriaImpl implements IAcervoReporitory {
+@Primary
+public class AcervoMemoriaImpl implements IAcervoRepository {
     ArrayList<Livro> lista_livros = new ArrayList<Livro>();
 
     public AcervoMemoriaImpl(){

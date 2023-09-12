@@ -2,7 +2,10 @@ package com.bcopstein.endpointsdemo1;
 
 import java.util.List;
 
-public interface IAcervoReporitory {
+import org.springframework.stereotype.Component;
+
+@Component
+public interface IAcervoRepository {
     List<Livro> getAll();
     List<String> getTitulos();
     List<String> getAutores();
