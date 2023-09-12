@@ -16,6 +16,11 @@ public class AcervoMemoriaImpl implements IAcervoReporitory {
         lista_livros.add(new Livro(20,"Introdução ao Spring-Boot","Zezinho Pato",2020));
         lista_livros.add(new Livro(15,"Principios SOLID","Luizinho Pato",2023));
         lista_livros.add(new Livro(17,"Padroes de Projeto","Lala Pato",2019));
+
+        lista_livros.add(new Livro(11,"Introdução ao Javaaa","Huguinho Pato",2023));
+        lista_livros.add(new Livro(12,"Introdução ao Javass","Huguinho Pato",2022));
+        
+    
     }
 
     public List<Livro> getAll(){
@@ -25,6 +30,7 @@ public class AcervoMemoriaImpl implements IAcervoReporitory {
     public List<String> getAutores(){
         return lista_livros.stream()
                .map(livro->livro.autor())
+               .distinct()
                .toList();
     }
 

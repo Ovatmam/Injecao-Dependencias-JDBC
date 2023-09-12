@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,25 +22,33 @@ public class EstatisticaController {
     private ServicoEstatistica servicoEstatistica;
 
     @Autowired
-    public EstatisticaController(ServicoEstatistica servicoEstatistica){
+    public EstatisticaController(ServicoEstatistica servicoEstatistica) {
         System.out.println("\n\nCriado Estatistica Controller\n\n");
         this.servicoEstatistica = servicoEstatistica;
     }
 
     @GetMapping("/")
     @CrossOrigin(origins = "*")
-    public String getSaudacao() {
+    public String getBemVindo() {
         return "Bem vindo as Estatisticas!";
     }
 
-    @GetMapping("/livros")
+    @GetMapping("/qtd/{autor}")
     @CrossOrigin(origins = "*")
-    public List<Livro> getLivros() {
-        return acervo.getAll();
+    public int getQtdLivrosDoAutor(@PathVariable("autor") String autor) {
+        return servicoEstatistica.contadorAutor(autor);  
     }
 
+    @GetMapping("/qtdano/{ano}")
+    @CrossOrigin(origins = "*")
+    public int getQtdLivrosAno(@PathVariable("ano") int ano) {
+        return servicoEstatistica.contadorAno(ano);  
+    }
 
+    @GetMapping("/media")
+    @CrossOrigin(origins = "*")
+    public double getMediaAutor() {
+        return servicoEstatistica.mediaAutor();  
+    }
+    
 }
-
-
-
