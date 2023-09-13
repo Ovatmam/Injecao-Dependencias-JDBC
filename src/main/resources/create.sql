@@ -4,5 +4,5 @@ CREATE TABLE livros (
     titulo VARCHAR(255),
     autor VARCHAR(255),
     ano int,
-    PRIMARY KEY (codgo)
+    PRIMARY KEY (codigo)
 );
